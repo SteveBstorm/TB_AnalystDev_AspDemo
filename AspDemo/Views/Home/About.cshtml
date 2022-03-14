@@ -1,0 +1,42 @@
+﻿<h1>Ma page d'info perso</h1>
+
+<p>Première vue créée à la main !!!</p>
+
+@{
+    string s = "toto";
+    if(s == "toto")
+    {
+        s = "Bonjour toto";
+    }
+
+    Client c = new Client()
+            {
+                Id = 1,
+                Name = "Steve",
+                Email = "monadresse@mail.com"
+            };
+            
+    object methode()
+    {
+        <h3>Page de profil de @c.Name</h3>
+        return null;
+    }
+
+    bool isConnected = false;
+}
+<p>@s</p>
+
+@methode()
+<p>@(isConnected ? "Bonjour" : "Connectez vous")</p>
+@{for(int i = 0; i< 10; i++) {
+   <p>itération numéro : @i</p>
+}}
+
+@{
+    int Addition(int x, int y)
+    {
+        @:Addition de @x et @y
+        return (x + y);
+    }
+}
+@Addition(10, 20)
