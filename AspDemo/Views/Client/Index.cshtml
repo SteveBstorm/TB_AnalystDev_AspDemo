@@ -1,6 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<Client>
 <h1>Bienvenue dans la vue Index du controller Client</h1>
+<h3>@ViewBag.Toto</h3>
+<h3>@ViewData["truc"]</h3>
+@{
+    TempData.Keep();
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Client c in Model)
+        {
+            <tr @((c.Id % 2 == 0) ? "class=classe" : "")>
+                <td>@c.Id</td>
+                <td>@c.Name</td>
+                <td>@c.Email</td>
+                <td>
+                    <a asp-action="Detail" asp-route-id="@c.Id">Détails</a> | 
+                    <a asp-action="Delete" asp-route-id="@c.Id">Supprimer</a>
+                    </td>
+            </tr>
+        }
+    </tbody>
+</table>
