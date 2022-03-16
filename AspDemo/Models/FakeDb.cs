@@ -1,7 +1,16 @@
-﻿namespace AspDemo.Models
+﻿using AspDemo.FormModels;
+
+namespace AspDemo.Models
 {
     public static class FakeDb
     {
+        private static int Id = 6;
+
+        private static int GetId()
+        {
+            return ++Id;
+        }
+
         public static List<Client> liste = new List<Client>() {
                 new Client { Id = 1, Name = "Arthur", Email = "arthur@mail.com" },
                 new Client { Id = 2, Name = "Perceval", Email = "Perceval@mail.com" },
@@ -19,6 +28,12 @@
         public static Client GetById(int id)
         {
             return liste.FirstOrDefault(x => x.Id == id);
+        }
+
+        public static void Create(Client newClient)
+        {
+            newClient.Id = GetId();
+            liste.Add(newClient);
         }
     }
 }

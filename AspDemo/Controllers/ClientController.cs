@@ -1,4 +1,6 @@
-﻿using AspDemo.Models;
+﻿using AspDemo.FormModels;
+using AspDemo.Models;
+using AspDemo.Tools;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspDemo.Controllers
@@ -24,6 +26,24 @@ namespace AspDemo.Controllers
         {
             FakeDb.Delete(id);
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(ClientForm form)
+        {
+            if(ModelState.IsValid)
+            {
+                FakeDb.Create(form.ToClient());
+                return RedirectToAction("Index");
+            }
+
+            return View(form);
+            
         }
     }
 }
